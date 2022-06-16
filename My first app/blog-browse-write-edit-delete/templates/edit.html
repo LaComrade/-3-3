@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <title>Редактировать запись</title>
+        
+    </head>
+<body>
+    <style type="text/css">
+    .ssilka{
+        display: inline-block;
+        background-color: #000000;
+        border-radius: 10px;
+        border: 4px double #cccccc;
+        color: #eeeeee;
+        text-align: center;
+        font-size: 15px;
+        padding: 20px;
+        width: 100px;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+          }    
+    .menu2 ul li {
+    list-style-type: none;
+    margin: 40px 0; 
+    }
+    </style>
+    <h1>Редактировать запись</h1>
+    {% if step == "display_entries" %}
+        {% if entries|length > 0 %}
+            Выберите запись для редактирования:
+            <form action="{{ url_for('edit') }}" method="post">
+            <table border="1">
+            <tr><td></td><td>Дата</td><td>Тема</td></tr>
+            {% for entry in entries %}
+                <tr><td><input type="radio" name="postid" value="{{entry.id}}"></td>
+                <td>{{ entry.date }}</td><td>{{ entry.title }}</td></tr>
+            {% endfor %}
+            </table>
+            <input type="hidden" name="step" value="make_edits">
+            <input type="submit">
+            </form>
+        {% else %}
+            Нет записей.
+            <p>
+            <a href="{{ url_for('homepage') }}">Вернуться на главную страницу</a>
+        {% endif %}
+    
+    {% elif step == "make_edits" %}
+        Редактируйте вашу запись:
+        <form action="{{ url_for('edit') }}" method="post">
+        Тема: <input type="text" size="30" name="title" value="{{entry.title}}"><br>
+        Текст: <textarea name="content" rows="5" cols="40">{{entry.content}}</textarea><br>
+        Обновить дату и время записи? <input type="checkbox" name="changedate" value="yes"><br>
+        <input type="hidden" name="step" value="update_database">
+        <input type="hidden" name="postid" value="{{entry.id}}">
+        <input type="submit">
+        </form>
+        
+    {% elif step == "update_database" %}
+        Спасибо вам за внесение изменений!
+        <p>
+            <a class="ssilka" href="{{ url_for('homepage') }}"> Вернуться на главную страницу</a>
+    {% endif %}
+</body>
+</html>

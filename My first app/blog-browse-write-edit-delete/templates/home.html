@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Blog</title>
+    </head>
+<body>
+    <h1>Главная страница</h1>
+    <style type="text/css">
+    .ssilka{
+        display: inline-block;
+        background-color: #000000;
+        border-radius: 10px;
+        border: 4px double #cccccc;
+        color: #eeeeee;
+        text-align: center;
+        font-size: 15px;
+        padding: 20px;
+        width: 100px;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+          }   
+    .menu2 ul li {
+	list-style-type: none;
+	margin: 40px 0; 
+    }
+    </style>
+    <div class="menu2">
+        <ul>
+            <li><a class="ssilka" href="{{ url_for('browse') }}">Показать все записи</a>
+            <li><a class="ssilka" href="{{ url_for('write') }}">Создать новую запись</a>
+            <li><a class="ssilka" href="{{ url_for('edit') }}">Редактировать запись</a>
+            <li><a class="ssilka" href="{{ url_for('delete') }}">Удалить запись</a>
+        </ul>
+    </div>
+    
+</body>
+</html>

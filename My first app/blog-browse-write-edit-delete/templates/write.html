@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Browse entries</title>
+    </head>
+<body>
+    <style type="text/css">
+    .ssilka{
+        display: inline-block;
+        background-color: #000000;
+        border-radius: 10px;
+        border: 4px double #cccccc;
+        color: #eeeeee;
+        text-align: center;
+        font-size: 15px;
+        padding: 20px;
+        width: 100px;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+          }     
+    .menu2 ul li {
+    list-style-type: none;
+    margin: 40px 0; 
+    }
+    </style>
+    <h1>Создать запись</h1>
+    {% if step=="compose_entry" %}
+        <form action="{{ url_for('write') }}" method="post">
+        Тема: <input type="text" size="30" name="title"><br>
+        Текст: <textarea name="content" rows="5" cols="40"></textarea><br>
+        <input type="hidden" name="step" value="add_entry">
+        <input type="submit">
+        </form>
+    {% elif step == "add_entry" %}
+        Ваше сообщение было отправлено.
+        <p>
+            <a class="ssilka" href="{{ url_for('homepage') }}"> Вернуться на главную страницу</a>
+    {% endif %}
+</body>
+</html>
